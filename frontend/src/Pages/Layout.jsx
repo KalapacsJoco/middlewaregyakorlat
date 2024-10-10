@@ -37,6 +37,7 @@ const navigate = useNavigate()
           {user ? (
             <div>
               <div>Üdv újra {user.name}</div>
+              <Link to="/create">Új bejegyzés</Link>
               <form onSubmit={handleLogout}>
                 <button> Kijelentkezés</button>
               </form>
