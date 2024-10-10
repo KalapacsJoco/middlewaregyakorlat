@@ -5,13 +5,12 @@ export const AppContext = createContext();
 export default function AppProvider({ children }) {
     const [token, setToken] = useState(localStorage.getItem('token'))
     // console.log(localStorage.getItem('token'))
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState(null);
 
     async function getUser() {
         if (!token) return;
         
         const response = await fetch('/api/user', {
-            
             headers: {
                 Authorization: `Bearer ${token}`, // Visszaillesztés szintaxis javítása
             },
@@ -35,7 +34,7 @@ export default function AppProvider({ children }) {
     }, [token]);
 
     return (
-        <AppContext.Provider value={{ token, setToken, user }}>
+        <AppContext.Provider value={{ token, setToken, user, setUser }}>
             {children}
         </AppContext.Provider>
     );
